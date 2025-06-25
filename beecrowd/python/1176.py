@@ -1,6 +1,16 @@
+fibo = []
+atual = 1
+antecessor = 1
+ultimo = 0
+fibo.append(ultimo)
+fibo.append(antecessor)
+fibo.append(atual)
+for i in range(61-3):
+    ultimo = antecessor
+    antecessor = atual
+    atual = ultimo + antecessor
+    fibo.append(atual)
 casos = int(input())
-fibo = [0, 1]
 for i in range(casos):
-    posicao = int(input())
-    for x in range(2, posicao):
-        
+    numero = int(input())
+    print(f"Fib({numero}) = {fibo[numero]}")
