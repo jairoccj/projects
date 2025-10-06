@@ -2,15 +2,20 @@
 using namespace std;
 
 int main(){
-    int tamanho; cin >> tamanho;
-
+    int n; cin >> n;
     string bandeira; cin >> bandeira;
-    int contador = 0;
 
-    for (int i=0; i<=tamanho-1; i++){
-        if (bandeira[i] != bandeira[i+1]){
-            contador += 1;
+    int l = 0, contador = 0;
+    set<char> s; // <- aqui, fora do for!
+
+    for (int r = 0; r < n; r++) {
+        while (s.count(bandeira[r])) {
+            s.erase(bandeira[l]);
+            l++;
         }
+        s.insert(bandeira[r]);
+        contador = max(contador, r - l + 1);
     }
-    cout << contador << "\n";
+
+    cout << contador << '\n';
 }
