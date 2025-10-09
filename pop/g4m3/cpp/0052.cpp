@@ -3,19 +3,34 @@ using namespace std;
 
 int main(){
     int n; cin >> n;
-    string bandeira; cin >> bandeira;
+    string p; cin >> p;
 
-    int l = 0, contador = 0;
-    set<char> s; // <- aqui, fora do for!
+    int l = 0, r = 0, sol = 0;
+    
+    // while(r < n){
+    //     set<char> s(p.begin()+l, p.begin()+r+1);
+    //     if(s.size() <= 2){
+    //         sol = max(sol, r - l + 1);
+    //         r++;
+    //     }
+    //     else{
+    //         l++;
+    //     }
+    // }
 
-    for (int r = 0; r < n; r++) {
-        while (s.count(bandeira[r])) {
-            s.erase(bandeira[l]);
+    map<char, int> m;
+    while(r<n){
+        m[p[r]]++;
+
+        while(m.size() > 2){
+            m[p[l]]--;
+            if(m[p[l]] == 0) m.erase(p[l]);
             l++;
         }
-        s.insert(bandeira[r]);
-        contador = max(contador, r - l + 1);
+
+        sol = max(sol, r - l + 1);
+        r++;
     }
 
-    cout << contador << '\n';
+    cout << sol << '\n';
 }
