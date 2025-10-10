@@ -1,28 +1,36 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+#define vi vector<int>
 
 int main(){
-    int constelacoes, max_estrelas; cin >> constelacoes >> max_estrelas;
-    int comidas = 0;
-    int resultado = 0;
-    vector<int> estrelas; vector<int> nutricao;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, total; cin >> n >> total;
+    vi qtd(n); vi valor(n);
     
-    for (int i=0; i<constelacoes; i++){
-        int estrela, valor_nutricional;
-        cin >> estrela >> valor_nutricional;
-        estrelas.push_back(estrela);
-        nutricao.push_back(valor_nutricional);
+    int sol = 0;
+
+    for(int i=0; i<n; i++){
+        int num; cin >> num;
+        qtd[i] = num;
+
+        cin >> num;
+        valor[i] = num;
     }
 
-
-
-    for (int i=0; i<constelacoes; i++){
-        auto it = max_element(nutricao.begin(), nutricao.end());
-        int maior = *it;
-        int indice = distance(nutricao.begin(), it);
-        resultado += maior;
-        
+    while(total--){
+        int maior = *max_element(valor.begin(), valor.end());
+        auto it = find(valor.begin(), valor.end(), maior);
+        int indice = distance(valor.begin(), it);
+        if(qtd[indice] > 0){
+            qtd[indice]--;
+            sol += valor[indice];
+        }
+        else{
+            valor[indice] = 0;
+            total++;
+        }
     }
-
+    cout << sol << '\n';
 }
