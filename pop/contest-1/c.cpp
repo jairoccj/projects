@@ -1,32 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define vi vector<int>
+#define vl vector<long long>
+#define ll ll
 
-int main(){
+void solve(){
     int n; cin >> n;
 
-    vi v(n);
-    for(int &i : v) cin >> i;
-
-    int l=0, r=1;
+    vl v(n);
+    for(auto &l : v) cin >> l;
 
     int sol = 1;
-    int atual = 1;
 
-    while(l<=r){
-        if(v[l] < v[r]){
-            atual++;
-            sol = max(sol, atual);
-            l++;
-            r++;
-        }else{
-            atual = 1;
+    int valor = 1;
+
+    for(int i=1; i < n; i++){
+        if(v[i-1] < v[i]){
+            valor++;
         }
-        if(v[l] >= v[r]){
-            l++;
-            r++;
+        else{
+            valor = 1;
         }
+        sol = max(sol, valor);
     }
-
     cout << sol << '\n';
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    solve();
 }
