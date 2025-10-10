@@ -1,26 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define vi vector<int>
+
+#ifdef oi
+void debug(int i){cout << i << '\n';}
+#else
+void debug(int i){return;}
+#endif
+
+void solve(){
+    long long n, alvo; cin >> n >> alvo;
+
+    long long m = ceil(double(n)/2);
+
+    if(alvo > m){
+        cout << (alvo - m) * 2 << '\n';
+    }
+    else{
+        cout << (alvo * 2) - 1 << '\n'; 
+    }
+}
 
 int main(){
-    int n, alvo; cin >> n >> alvo;
-    vi v(n);
-
-    int count = n/2;
-
-    int contador = 0;
-
-    int i = 1;
-
-    for(i; i<count; i+2){
-        v[contador] = i;
-        contador++;
-    }
-
-    for(int j = i; j<n-1; j+2){
-        v[contador] = j;
-        contador++;
-    }
-
-    cout << v[alvo-1] << '\n';
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    solve();
 }
